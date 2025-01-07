@@ -5,10 +5,11 @@ from .models import Event
 
 class EventAdmin(admin.ModelAdmin):
     list_display = (
+        'date',
         'name',
         'teacher',
     )
 
-    ordering = ('name',)
+    ordering = ('date',)
 
 admin.site.register(Event, EventAdmin)
