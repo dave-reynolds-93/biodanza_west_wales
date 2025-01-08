@@ -6,6 +6,7 @@ import datetime
 
 class Event(models.Model):
     name = models.CharField(max_length=254)
+    location = models.CharField(max_length=254, default='Cardigan')
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     teacher = models.CharField(max_length=254)
