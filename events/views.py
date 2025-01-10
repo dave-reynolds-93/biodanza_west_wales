@@ -8,6 +8,16 @@ def all_events(request):
     """ A view to show all events, including sorting """
 
     events = Event.objects.all()
+    location = None
+
+    if request.GET:
+        if 'location' in request.GET:
+            location = request.GET['location']
+            events = Event.objects.filter(location=location)
+
+        if 'teacher' in request.GET:
+            teacher = request.GET['teacher']
+            events = Event.objects.filter(teacher=teacher)
 
     context = {
         'events': events,

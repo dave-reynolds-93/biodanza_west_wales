@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center mt-3">
+                <h2 class="logo-font">Teachers</h2>
+                <hr class="w-50 mb-1 mx-auto">
+            </div>
+        </div>
+        <div class="row">
+            <div class="teacher-container col-10 offset-1">
+                <div class="row mt-1 mb-2"></div>
+                <div class="row">
+                    {% for teacher in teachers %}
+                        <div class="col-12 mb-4">
+                            <div class="card h-100 border-0">
+                                {% if teacher.image %}
+                                    <img class="card-img-top img-fluid" src="{{ teacher.image.url }}" alt="{{ teacher.name }}">
+                                {% else %}
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ teacher.name }}">
+                                {% endif %}
+                                <div class="card-body pb-0">
+                                    <p class="lead mb-0 text-left font-weight-bold">{{ teacher.name }}</p>
+                                </div>
+                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="lead mb-0 text-left font-weight-bold">{{ teacher.bio }}</p>
+                                            <a href="{% url 'events' %}?teacher={{ teacher.name }}">Click here to see events run by {{ teacher.name }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}    
+                </div>    
+            </div>            
+        </div>
+    </div>
+{% endblock %}
